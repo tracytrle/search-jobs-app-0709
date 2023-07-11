@@ -1,41 +1,19 @@
 import React from "react";
 import { useEffect, useState } from "react";
-
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
+
 import Container from "@mui/material/Grid";
 import jobData from "../getData";
-import PaginationAppButtons from "./PaginationAppButtons";
 import ShowingJobs from "./ShowingJobs.js";
 import { Typography } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
-import Pagination from "@mui/material/Pagination";
-import PaginationItem from "@mui/material/PaginationItem";
-import Stack from "@mui/material/Stack";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import PaginationApp from "./PaginationApp";
-
-const CentterPagination = styled(Pagination)(({ theme }) => ({
-  ul: {
-    justifyContent: "center",
-  },
-}));
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
 
 export default function HomePage() {
   const [jobs, setJobs] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const searchInput = searchParams.get("q");
 
   function changePage(newPage) {
@@ -49,12 +27,9 @@ export default function HomePage() {
       setTotalPages(data.totalPage);
       console.log("Hompage searchInput: ", searchInput);
       console.log("print totalPage: ", totalPages);
-      // console.log(`data.jobs: ${JSON.stringify(data.jobs)}`);
-      // console.log("jobs: ", jobs);
-      // console.log("page: ", page);
     };
     fetchData();
-  }, [page, searchInput]);
+  }, [page, searchInput, totalPages]);
 
   useEffect(() => {
     console.log("-- Homepage jobs: ", jobs);

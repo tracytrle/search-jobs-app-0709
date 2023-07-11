@@ -34,4 +34,15 @@ async function getJobs(page, searchInput = null) {
   }
 }
 
-export default { getJobs };
+async function getDetailJob(id) {
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve();
+    }, 100);
+  });
+  await promise;
+
+  return jobs.find((job) => job.id === id);
+}
+
+export default { getJobs, getDetailJob };

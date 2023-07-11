@@ -10,12 +10,6 @@ export default function PaginationControlled({ PageCount, changePage }) {
     changePage(value);
   };
 
-  // const handleOnClick = (event) => {
-  //   let value = event.target.page;
-  //   console.log({ event });
-  //   setPage(value);
-  // };
-
   return (
     <Stack
       spacing={2}

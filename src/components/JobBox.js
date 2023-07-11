@@ -6,16 +6,18 @@ import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
-import { sizeHeight } from "@mui/system";
+import { useNavigate } from "react-router";
 
 export default function MiddleDividers({ job }) {
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
         width: "100%",
         maxWidth: 360,
         height: "100%",
-        bgcolor: "background.paper",
+        bgcolor: (theme) => theme.palette.primary.light,
+        color: "#ffffff",
       }}
     >
       <Box sx={{ my: 3, mx: 2 }}>
@@ -26,7 +28,7 @@ export default function MiddleDividers({ job }) {
             </Typography>
           </Grid>
         </Grid>
-        <Typography color="text.secondary" variant="body2">
+        <Typography color="#ffffff" variant="body2">
           {job.description}
         </Typography>
       </Box>
@@ -37,7 +39,8 @@ export default function MiddleDividers({ job }) {
             <Chip
               sx={{
                 fontSize: "0.55rem",
-                backgroundColor: "#ff5722",
+                backgroundColor: "#df4747",
+                color: "#ffffff",
               }}
               label={skill}
             />
@@ -48,7 +51,7 @@ export default function MiddleDividers({ job }) {
         sx={{
           mt: 3,
           ml: 1,
-          mb: 1,
+          mb: 0,
           display: "flex",
           justifyContent: "center",
         }}
@@ -60,7 +63,9 @@ export default function MiddleDividers({ job }) {
             color: "blue",
             fontSize: "0.625rem",
             mb: 0,
+            mt: 2,
           }}
+          onClick={() => navigate(`/jobs/${job.id}`)}
         >
           LEARN MORE
         </Button>

@@ -101,7 +101,6 @@ export default function SearchAppBar() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
-              placeholder="Search…"
               value={searchValue}
               onChange={(event) => {
                 handleOnChange(event);

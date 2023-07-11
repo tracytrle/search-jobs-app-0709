@@ -1,14 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import SearchAppBar from "./components/SearchAppBar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ContainerApp from "./components/ContainerApp";
 import HomePage from "./components/HomePage";
 import { Routes, Route } from "react-router-dom";
+import DetailJob from "./components/DetailJob";
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#ff5722",
+      main: "#535c68",
     },
     secondary: {
       main: "#2d3436",
@@ -24,6 +25,7 @@ function App() {
           <SearchAppBar />
           <Routes>
             <Route path="/" element={<HomePage />}></Route>
+            <Route path="/jobs/:id" element={<DetailJob />}></Route>
           </Routes>
         </ThemeProvider>
       </ContainerApp>
