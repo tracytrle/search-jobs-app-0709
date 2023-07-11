@@ -1,4 +1,6 @@
 import * as React from "react";
+import { useState } from "react";
+
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -8,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import { useSearchParams } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -52,6 +55,24 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
+  let [searchParams, setSearchParams] = useSearchParams();
+  const [searchValue, setSearchValue] = useState(searchParams.get("q") || "");
+  function handleOnChange(event) {
+    let value = event.target.value;
+    setSearchValue(value);
+  }
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      let value = event.target.value;
+      setSearchValue(value);
+      setSearchParams({ q: value });
+      console.log("print searchParams: ", value);
+      // You can also prevent the default form submission behavior by calling event.preventDefault()
+      event.preventDefault();
+    }
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -80,6 +101,12 @@ export default function SearchAppBar() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
+              placeholder="Search…"
+              value={searchValue}
+              onChange={(event) => {
+                handleOnChange(event);
+              }}
+              onKeyDown={handleKeyDown}
             />
           </Search>
         </Toolbar>

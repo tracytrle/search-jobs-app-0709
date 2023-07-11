@@ -4,9 +4,11 @@ import PaginationItem from "@mui/material/PaginationItem";
 import Stack from "@mui/material/Stack";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { Container } from "@mui/system";
+import { useState } from "react";
 
-export default function CustomIcons() {
+export default function CustomIcons(nums) {
+  const [page, setPage] = useState(1);
+
   return (
     <Stack
       spacing={2}
@@ -14,19 +16,22 @@ export default function CustomIcons() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        color: "white", // Set the color to white
+        color: "white",
+        backgroundColor: "yellow",
         mt: 3,
         "& .MuiPaginationItem-root": {
-          color: "white", // Set the color of the items to white
+          color: "white",
         },
       }}
     >
       <Pagination
-        count={4}
-        renderItem={(item) => (
+        count={nums}
+        renderItem={(nums) => (
           <PaginationItem
             slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
-            {...item}
+            onChange={(event, pageNum) => {
+              setPage(pageNum);
+            }}
           />
         )}
       />

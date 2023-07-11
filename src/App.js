@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SearchAppBar from "./components/SearchAppBar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ContainerApp from "./components/ContainerApp";
 import HomePage from "./components/HomePage";
+import { Routes, Route } from "react-router-dom";
 
 const theme = createTheme({
   palette: {
@@ -14,13 +15,16 @@ const theme = createTheme({
     },
   },
 });
+
 function App() {
   return (
     <div>
       <ContainerApp>
         <ThemeProvider theme={theme}>
           <SearchAppBar />
-          <HomePage />
+          <Routes>
+            <Route path="/" element={<HomePage />}></Route>
+          </Routes>
         </ThemeProvider>
       </ContainerApp>
     </div>
