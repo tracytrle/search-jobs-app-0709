@@ -45,8 +45,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
+    [theme.breakpoints.up("md")]: {
+      // width: "18ch",
       "&:focus": {
         width: "20ch",
       },
@@ -62,6 +62,7 @@ export default function SearchAppBar() {
     setSearchValue(value);
   }
 
+  // since styled("div") not "form", we cannot use onSubmit
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       let value = event.target.value;
@@ -75,25 +76,23 @@ export default function SearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-          >
-            Search Jobs
-          </Typography>
+      <AppBar
+        position="static"
+        sx={{
+          backgroundColor: "#3E3E3E",
+          display: "flex",
+          justifyContent: "center",
+          paddingTop: "0px",
+          paddingLeft: "24px",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "center",
+          }}
+        >
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -108,7 +107,17 @@ export default function SearchAppBar() {
               onKeyDown={handleKeyDown}
             />
           </Search>
-        </Toolbar>
+
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            sx={{ ml: 2, right: 0 }}
+          >
+            sign
+          </IconButton>
+        </Box>
       </AppBar>
     </Box>
   );

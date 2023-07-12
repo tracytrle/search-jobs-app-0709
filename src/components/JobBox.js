@@ -13,9 +13,9 @@ export default function MiddleDividers({ job }) {
   return (
     <Box
       sx={{
-        width: "100%",
+        width: "95%",
         maxWidth: 360,
-        height: "100%",
+        height: "90%",
         bgcolor: (theme) => theme.palette.primary.light,
         color: "#ffffff",
       }}
@@ -38,7 +38,7 @@ export default function MiddleDividers({ job }) {
           {job.skills.slice(0, 4).map((skill) => (
             <Chip
               sx={{
-                fontSize: "0.55rem",
+                fontSize: "0.45rem",
                 backgroundColor: "#df4747",
                 color: "#ffffff",
               }}
@@ -49,9 +49,9 @@ export default function MiddleDividers({ job }) {
       </Box>
       <Box
         sx={{
-          mt: 3,
+          mt: 2,
           ml: 1,
-          mb: 0,
+          mb: 0.5,
           display: "flex",
           justifyContent: "center",
         }}
@@ -62,8 +62,8 @@ export default function MiddleDividers({ job }) {
             borderColor: "blue",
             color: "blue",
             fontSize: "0.625rem",
-            mb: 0,
-            mt: 2,
+            mb: 1,
+            mt: 1,
           }}
           onClick={() => navigate(`/jobs/${job.id}`)}
         >

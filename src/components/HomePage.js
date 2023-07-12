@@ -40,16 +40,15 @@ export default function HomePage() {
   return (
     <Container
       sx={{
-        backgroundColor: "black",
         color: "black",
-        maxWidth: "100vw",
+        maxWidth: "90vw",
+
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         padding: 1,
       }}
     >
-      {" Testing "}
       {jobs.length > 0 ? (
         <>
           <ShowingJobs jobs={jobs} page={page} />

@@ -5,14 +5,19 @@ function ContainerApp(props) {
   return (
     <Container
       sx={{
-        backgroundColor: "black",
         color: "black",
-        minHeight: "95vh",
+        // height: "90vh",
+        backgroundColor: "transparent",
+        width: "90%",
+        height: "90vh",
+        minHeight: "80vh",
         maxWidth: "100vw",
-        display: "flex",
-        flexDirection: "column",
+        display: "block",
+        flexDirection: "row",
         justifyContent: "center",
-        padding: 2,
+        mt: -3,
+        // position: "static",
+
         // alignItems: "center",
       }}
       // maxWidth={false}

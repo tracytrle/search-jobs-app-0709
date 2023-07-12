@@ -20,9 +20,9 @@ const theme = createTheme({
 function App() {
   return (
     <div>
+      <SearchAppBar />
       <ContainerApp>
         <ThemeProvider theme={theme}>
-          <SearchAppBar />
           <Routes>
             <Route path="/" element={<HomePage />}></Route>
             <Route path="/jobs/:id" element={<DetailJob />}></Route>

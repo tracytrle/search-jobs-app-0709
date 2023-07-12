@@ -4,7 +4,7 @@ import JobBox from "./JobBox";
 
 export default function showingJobs({ jobs, page }) {
   return (
-    <Grid container spacing={2} mt={1}>
+    <Grid container spacing={2} mt={0.5}>
       {jobs.map((job) => (
         <Grid key={job.id} item xs={12} md={6} lg={4}>
           <JobBox job={job} />
