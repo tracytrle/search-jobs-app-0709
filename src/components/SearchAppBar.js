@@ -4,13 +4,17 @@ import { useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
+
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
+
 import InputBase from "@mui/material/InputBase";
-import MenuIcon from "@mui/icons-material/Menu";
+
 import SearchIcon from "@mui/icons-material/Search";
 import { useSearchParams } from "react-router-dom";
+import "./FLogin.js";
+import Modal from "@mui/material/Modal";
+
+import FLogin from "./FLogin.js";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -55,12 +59,22 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
+  const [open, setOpen] = useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
   const [searchValue, setSearchValue] = useState(searchParams.get("q") || "");
+
   function handleOnChange(event) {
     let value = event.target.value;
     setSearchValue(value);
   }
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   // since styled("div") not "form", we cannot use onSubmit
   const handleKeyDown = (event) => {
@@ -69,7 +83,6 @@ export default function SearchAppBar() {
       setSearchValue(value);
       setSearchParams({ q: value });
       console.log("print searchParams: ", value);
-      // You can also prevent the default form submission behavior by calling event.preventDefault()
       event.preventDefault();
     }
   };
@@ -107,16 +120,49 @@ export default function SearchAppBar() {
               onKeyDown={handleKeyDown}
             />
           </Search>
-
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ ml: 2, right: 0 }}
-          >
-            sign
-          </IconButton>
+          <Box>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              sx={{ ml: 2, right: 0, fontSize: "1rem", gap: "5px" }}
+              onClick={handleOpen}
+            >
+              <img
+                src="../arrow-right-3781.svg"
+                alt=""
+                width="25px"
+                height="25px"
+              />{" "}
+              Login
+            </IconButton>
+            <Modal open={open} onClose={handleClose}>
+              <Box
+                sx={{
+                  // display: "flex",
+                  alignItems: "center",
+                  // justifyContent: "center",
+                  flexWrap: "wrap",
+                  overflow: "scroll",
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: 360,
+                  color: "white",
+                  bgcolor: "#757C86",
+                  boxShadow: 24,
+                  p: 4,
+                  "@media (max-width: 375px)": {
+                    width: 280,
+                  },
+                }}
+              >
+                <FLogin onClose={handleClose} />
+              </Box>
+            </Modal>
+          </Box>
         </Box>
       </AppBar>
     </Box>

@@ -5,6 +5,7 @@ import ContainerApp from "./components/ContainerApp";
 import HomePage from "./components/HomePage";
 import { Routes, Route } from "react-router-dom";
 import DetailJob from "./components/DetailJob";
+import FLogin from "./components/FLogin";
 
 const theme = createTheme({
   palette: {
@@ -26,6 +27,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />}></Route>
             <Route path="/jobs/:id" element={<DetailJob />}></Route>
+            <Route path="/login" element={<FLogin />}></Route>
           </Routes>
         </ThemeProvider>
       </ContainerApp>

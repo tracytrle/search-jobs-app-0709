@@ -21,17 +21,18 @@ export default function PaginationControlled({ PageCount, changePage }) {
         marginTop: "30px",
       }}
     >
-      <Typography></Typography>
-      <Pagination
-        sx={{
-          "& .MuiPaginationItem-root": {
-            color: "white",
-          },
-        }}
-        count={PageCount}
-        page={page}
-        onChange={handleChange}
-      />
+      <Typography>
+        <Pagination
+          sx={{
+            "& .MuiPaginationItem-root": {
+              color: "white",
+            },
+          }}
+          count={PageCount}
+          page={page}
+          onChange={handleChange}
+        />
+      </Typography>
     </Stack>
   );
 }
