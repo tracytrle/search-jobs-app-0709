@@ -1,20 +1,17 @@
 import * as React from "react";
 import { useState } from "react";
-
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-
 import IconButton from "@mui/material/IconButton";
-
 import InputBase from "@mui/material/InputBase";
-
 import SearchIcon from "@mui/icons-material/Search";
 import { useSearchParams } from "react-router-dom";
 import "./FLogin.js";
 import Modal from "@mui/material/Modal";
-
 import FLogin from "./FLogin.js";
+
+import { useNavigate } from "react-router";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -68,8 +65,11 @@ export default function SearchAppBar() {
     setSearchValue(value);
   }
 
+  const navigate = useNavigate();
+
   const handleOpen = () => {
     setOpen(true);
+    navigate("/login");
   };
 
   const handleClose = () => {
@@ -140,9 +140,7 @@ export default function SearchAppBar() {
             <Modal open={open} onClose={handleClose}>
               <Box
                 sx={{
-                  // display: "flex",
                   alignItems: "center",
-                  // justifyContent: "center",
                   flexWrap: "wrap",
                   overflow: "scroll",
                   position: "absolute",
