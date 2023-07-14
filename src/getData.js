@@ -9,7 +9,6 @@ const getJobs = async (page, searchInput = null) => {
   await promise;
 
   if (searchInput) {
-    console.log(`---------> notempty.getData: ${searchInput}`);
     let collectedJobs = jobs.filter(
       (job) =>
         job.title.toLowerCase().includes(searchInput.toLowerCase()) ||
@@ -19,10 +18,9 @@ const getJobs = async (page, searchInput = null) => {
           each.toLowerCase().includes(searchInput.toLowerCase())
         )
     );
-    console.log(`----> collectedJobs: ${collectedJobs}`);
+
     let size = Math.ceil(collectedJobs.length / 5);
-    console.log(`---------> NONempty.getsize: ${size}`);
-    // return { jobs: collectedJobs, totalPage: size };
+
     return {
       jobs: collectedJobs.slice((page - 1) * 6, page * 6 - 1),
       totalPage: size,

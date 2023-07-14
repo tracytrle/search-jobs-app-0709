@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -7,11 +7,9 @@ import IconButton from "@mui/material/IconButton";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { useSearchParams } from "react-router-dom";
-import "./FLogin.js";
-import Modal from "@mui/material/Modal";
-import FLogin from "./FLogin.js";
 
-import { useNavigate } from "react-router";
+import AuthContext from "./AuthComponents/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -56,24 +54,27 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
-  const [open, setOpen] = useState(false);
+  // const [setOpen] = useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
   const [searchValue, setSearchValue] = useState(searchParams.get("q") || "");
+  const auth = useContext(AuthContext);
+  const navigate = useNavigate();
 
   function handleOnChange(event) {
     let value = event.target.value;
     setSearchValue(value);
   }
 
-  const navigate = useNavigate();
-
   const handleOpen = () => {
-    setOpen(true);
+    // setOpen(true);
     navigate("/login");
   };
 
   const handleClose = () => {
-    setOpen(false);
+    // setOpen(false);
+    auth.logout(() => {
+      navigate("/");
+    });
   };
 
   // since styled("div") not "form", we cannot use onSubmit
@@ -121,45 +122,54 @@ export default function SearchAppBar() {
             />
           </Search>
           <Box>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              sx={{ ml: 2, right: 0, fontSize: "1rem", gap: "5px" }}
-              onClick={handleOpen}
-            >
-              <img
-                src="../arrow-right-3781.svg"
-                alt=""
-                width="25px"
-                height="25px"
-              />{" "}
-              Login
-            </IconButton>
-            <Modal open={open} onClose={handleClose}>
-              <Box
-                sx={{
-                  alignItems: "center",
-                  flexWrap: "wrap",
-                  overflow: "scroll",
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  width: 360,
-                  color: "white",
-                  bgcolor: "#757C86",
-                  boxShadow: 24,
-                  p: 4,
-                  "@media (max-width: 375px)": {
-                    width: 280,
-                  },
-                }}
+            {auth?.user ? (
+              <>
+                <IconButton
+                  size="large"
+                  edge="start"
+                  color="inherit"
+                  aria-label="open drawer"
+                  sx={{ ml: 2, right: 0, fontSize: "1rem", gap: "5px" }}
+                  onClick={handleClose}
+                >
+                  <img src="../lock2.png" alt="" width="32px" height="32px" />{" "}
+                  {auth?.user}
+                </IconButton>
+                <IconButton
+                  size="large"
+                  edge="start"
+                  color="inherit"
+                  aria-label="open drawer"
+                  sx={{ ml: 2, right: 0, fontSize: "1rem", gap: "5px" }}
+                  onClick={handleClose}
+                >
+                  <img
+                    src="../arrow-right-3781.svg"
+                    alt=""
+                    width="25px"
+                    height="25px"
+                  />{" "}
+                  Logout
+                </IconButton>
+              </>
+            ) : (
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                sx={{ ml: 2, right: 0, fontSize: "1rem", gap: "5px" }}
+                onClick={handleOpen}
               >
-                <FLogin onClose={handleClose} />
-              </Box>
-            </Modal>
+                <img
+                  src="../arrow-right-3781.svg"
+                  alt=""
+                  width="25px"
+                  height="25px"
+                />{" "}
+                Login
+              </IconButton>
+            )}
           </Box>
         </Box>
       </AppBar>

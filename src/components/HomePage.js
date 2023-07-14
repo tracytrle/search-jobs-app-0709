@@ -25,17 +25,15 @@ export default function HomePage() {
       const data = await jobData.getJobs(page, searchInput);
       setJobs(data.jobs);
       setTotalPages(data.totalPage);
-      console.log("Hompage searchInput: ", searchInput);
-      console.log("print totalPage: ", totalPages);
     };
     fetchData();
   }, [page, searchInput, totalPages]);
 
-  useEffect(() => {
-    console.log("-- Homepage jobs: ", jobs);
-    console.log("-- Homepage page: ", page);
-    console.log("-- Homepage totalpage: ", totalPages);
-  }, [jobs, page, totalPages]);
+  // useEffect(() => {
+  //   console.log("-- Homepage jobs: ", jobs);
+  //   console.log("-- Homepage page: ", page);
+  //   console.log("-- Homepage totalpage: ", totalPages);
+  // }, [jobs, page, totalPages]);
 
   return (
     <Container

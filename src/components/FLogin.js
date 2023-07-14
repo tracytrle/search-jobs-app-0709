@@ -1,64 +1,66 @@
-import { React, useState } from "react";
+import { React, useState, useContext } from "react";
 
 import { useForm } from "react-hook-form";
 import {
   Stack,
-  Alert,
+  // Alert,
   IconButton,
   InputAdornment,
   Typography,
 } from "@mui/material";
+
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { LoadingButton } from "@mui/lab";
 import { FormProvider, FTextField } from "./LoginHelperMethods/index.js";
 import Box from "@mui/material/Box";
-// import { useHistory } from "react-router-dom";
+import AuthContext from "./AuthComponents/AuthContext";
 
-function FLogin() {
+function FLogin(callback) {
   const defaultValues = {
-    email: "",
+    username: "tructran",
     password: "123",
   };
-  // const navigate = useNavigate();
-  // const history = useHistory();
-
-  // const handleLogin = () => {
-  //   // navigate(-1);
-  //   history.push("/login");
-  // };
 
   const methods = useForm({ defaultValues });
   const {
-    setError,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { isSubmitting },
   } = methods;
+  const { register, watch } = useForm();
+
+  const auth = useContext(AuthContext);
 
   const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = (data) => {
     console.log(data);
-    setError("afterSubmit", {
-      message: "Server Response Error",
-    });
-    // rules={{required: true}};
+    auth.login(data.username, callback);
   };
+
+  const handleLogin = () => {
+    const username = watch("username");
+    const password = watch("password");
+    console.log("username: ", username);
+    auth.login(username, callback);
+  };
+
   return (
-    <Box component="form" gap={4}>
+    <Box gap={4}>
       <Typography variant="h4" textAlign="center" mb={3}>
-        Login
+        Login My Form
       </Typography>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={3} mb="30px">
-          {!!errors.afterSubmit && (
+          {/* {!!errors.afterSubmit && (
             <Alert severity="error">{errors.afterSubmit.message}</Alert>
-          )}
-          <FTextField name="email" label="Email address" />
+          )} */}
+          <FTextField name="username" label="Username" ref={register} />
           <FTextField
             name="password"
             label="password"
             type={showPassword ? "text" : "password"}
+            ref={register}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -81,6 +83,7 @@ function FLogin() {
           type="submit"
           variant="contained"
           loading={isSubmitting}
+          onClick={handleLogin}
           marginTop="20px"
         >
           Sign in
