@@ -27,7 +27,7 @@ function Login() {
         boxShadow: 24,
         p: 4,
         "@media (max-width: 375px)": {
-          width: 280,
+          width: 320,
         },
       }}
     >

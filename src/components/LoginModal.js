@@ -1,6 +1,6 @@
 import Modal from "@mui/material/Modal";
-// import LoginForm from "./LoginForm";
-import FLogin from "./FLogin";
+import LoginForm from "./LoginForm";
+// import FLogin from "./FLogin";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 
@@ -18,10 +18,12 @@ import Box from "@mui/material/Box";
 const style = {
   alignItems: "center",
   flexWrap: "wrap",
+  display: "flex",
+  justifyContent: "center",
   overflow: "scroll",
-  position: "absolute",
-  top: "50%",
-  left: "50%",
+  // position: "absolute",
+  // top: "50%",
+  // left: "50%",
   transform: "translate(-50%, -50%)",
   width: 360,
   color: "white",
@@ -29,7 +31,7 @@ const style = {
   boxShadow: 24,
   p: 4,
   "@media (max-width: 375px)": {
-    width: 280,
+    width: 320,
   },
 };
 
@@ -46,9 +48,10 @@ function LoginModal() {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        sx={{ display: "flex", justifyContent: "center" }}
       >
         <Box sx={style}>
-          <FLogin callback={() => {}} />
+          <LoginForm callback={() => {}} />
         </Box>
       </Modal>
     </div>

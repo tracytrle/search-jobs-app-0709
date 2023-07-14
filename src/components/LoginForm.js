@@ -19,8 +19,14 @@ const style = {
   flexDirection: "column",
   width: "300px",
   border: "1px solid",
-  padding: "10px",
-  borderRadius: "5px",
+  padding: "5px",
+  borderRadius: "0px",
+  flexWrap: "wrap",
+  overflow: "scroll",
+
+  "@media (max-width: 375px)": {
+    width: 240,
+  },
 };
 
 function LoginForm({ callback }) {
@@ -35,28 +41,21 @@ function LoginForm({ callback }) {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-  // const onSubmit = (data) => {
-  //   console.log(data);
-  //   auth.login(data.username, callback);
-  // };
 
   const handleLogin = () => {
-    // const username = watch("username");
-    // const password = watch("password");
     auth.login(username, callback);
   };
 
   return (
-    <Box sx={style} component="form" gap={4}>
-      <Typography variant="h4" component="div">
+    <Box sx={style} gap={4}>
+      <Typography
+        sx={{ display: "flex", justifyContent: "center " }}
+        variant="h4"
+        component="div"
+      >
         Login
       </Typography>
-      <TextField
-        label="Username"
-        defaultValue="user"
-        value={username}
-        sx={{ m: 1 }}
-      />
+      <TextField label="Username" defaultValue={username} sx={{ m: 1 }} />
       <FormControl sx={{ m: 1 }} variant="outlined">
         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
         <OutlinedInput
@@ -82,7 +81,7 @@ function LoginForm({ callback }) {
         size="large"
         type="submit"
         onClick={handleLogin}
-        sx={{ m: 1, width: "10ch" }}
+        sx={{ m: 1, width: "10ch", margin: "auto" }}
         variant="contained"
       >
         Login
