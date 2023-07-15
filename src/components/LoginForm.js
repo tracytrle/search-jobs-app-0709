@@ -11,7 +11,7 @@ import Box from "@mui/material/Box";
 import AuthContext from "./AuthComponents/AuthContext";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useForm } from "react-hook-form";
+// import { useLocation } from "react-router-dom";
 
 const style = {
   bgcolor: "#757C86",
@@ -32,8 +32,7 @@ const style = {
 function LoginForm({ callback }) {
   const [username] = useState("tructran");
   const [password] = useState("123");
-
-  // const { register, handleSubmit } = useForm();
+  // const location = useLocation();
 
   const auth = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useContext } from "react";
 import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
 import Button from "@mui/material/Button";
@@ -6,10 +7,14 @@ import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
+import AuthContext from "./AuthComponents/AuthContext";
 
 export default function MiddleDividers({ job }) {
+  const auth = useContext(AuthContext);
   const navigate = useNavigate();
+  let location = useLocation();
+
   return (
     <Box
       sx={{
@@ -65,7 +70,9 @@ export default function MiddleDividers({ job }) {
             mb: 1,
             mt: 1,
           }}
-          onClick={() => navigate(`/jobs/${job.id}`)}
+          onClick={() =>
+            auth.user ? navigate(`/jobs/${job.id}`) : navigate(`/login`)
+          }
         >
           LEARN MORE
         </Button>

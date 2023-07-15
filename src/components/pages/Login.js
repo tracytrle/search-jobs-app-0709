@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Stack from "@mui/material/Stack";
 import LoginForm from "../LoginForm";
 // import FLogin from "../FLogin";
+import AuthContext from "../AuthComponents/AuthContext";
 
 function Login() {
+  const auth = useContext(AuthContext);
+
   let navigate = useNavigate();
   let from = navigate.state?.from?.pathname || "/";
   console.log("=========print inLogin from: ", from);
+  console.log("=========print inLogin auth: ", auth);
 
   return (
     <Stack

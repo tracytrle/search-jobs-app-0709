@@ -34,9 +34,6 @@ function App() {
               <Route path="/" element={<HomePage />}></Route>
               <Route path="/jobs/:id" element={<DetailJob />}></Route>
               <Route path="/login" element={<Login />}></Route>
-              {/* <Routes>
-                <Route path="/login/form" element={<LoginModal />}></Route>
-              </Routes> */}
             </Routes>
           </ThemeProvider>
         </ContainerApp>
