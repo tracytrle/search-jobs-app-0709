@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Stack from "@mui/material/Stack";
 import LoginForm from "../LoginForm";
-// import FLogin from "../FLogin";
 import AuthContext from "../AuthComponents/AuthContext";
 
 function Login() {

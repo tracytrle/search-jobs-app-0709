@@ -11,7 +11,6 @@ import Box from "@mui/material/Box";
 import AuthContext from "./AuthComponents/AuthContext";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-// import { useLocation } from "react-router-dom";
 
 const style = {
   bgcolor: "#757C86",
@@ -30,15 +29,19 @@ const style = {
 };
 
 function LoginForm({ callback }) {
-  const [username] = useState("tructran");
-  const [password] = useState("123");
-  // const location = useLocation();
+  const [username, setUsername] = useState("tructran");
+  const [password, setPassword] = useState("123");
 
   const auth = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
+    setPassword(event.target.value);
+  };
+
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
   };
 
   const handleLogin = () => {
@@ -54,7 +57,12 @@ function LoginForm({ callback }) {
       >
         Login
       </Typography>
-      <TextField label="Username" defaultValue={username} sx={{ m: 1 }} />
+      <TextField
+        label="Username"
+        defaultValue={username}
+        sx={{ m: 1 }}
+        onChange={handleUsernameChange}
+      />
       <FormControl sx={{ m: 1 }} variant="outlined">
         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
         <OutlinedInput

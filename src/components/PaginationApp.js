@@ -27,6 +27,9 @@ export default function PaginationControlled({ PageCount, changePage }) {
             "& .MuiPaginationItem-root": {
               color: "white",
             },
+            "& .MuiPaginationItem-root:hover": {
+              backgroundColor: "#df4747",
+            },
           }}
           count={PageCount}
           page={page}

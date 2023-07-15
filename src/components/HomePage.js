@@ -5,7 +5,6 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Grid";
 import jobData from "../getData";
 import ShowingJobs from "./ShowingJobs.js";
-import { Typography } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 import PaginationApp from "./PaginationApp";
 
@@ -16,6 +15,7 @@ export default function HomePage() {
   const [searchParams] = useSearchParams();
   const searchInput = searchParams.get("q");
 
+  // update change page when click on the pagination
   function changePage(newPage) {
     setPage(newPage);
   }
@@ -28,13 +28,6 @@ export default function HomePage() {
     };
     fetchData();
   }, [page, searchInput, totalPages]);
-
-  // useEffect(() => {
-  //   console.log("-- Homepage jobs: ", jobs);
-  //   console.log("-- Homepage page: ", page);
-  //   console.log("-- Homepage totalpage: ", totalPages);
-  // }, [jobs, page, totalPages]);
-
   return (
     <Container
       sx={{
@@ -47,7 +40,7 @@ export default function HomePage() {
         padding: 1,
       }}
     >
-      {jobs.length > 0 ? (
+      {jobs.length > 0 && (
         <>
           <ShowingJobs jobs={jobs} page={page} />
           <Box
@@ -60,10 +53,6 @@ export default function HomePage() {
             <PaginationApp PageCount={totalPages} changePage={changePage} />
           </Box>
         </>
-      ) : (
-        <Typography variant="h4" sx={{ textAlign: "center" }}>
-          No Job found
-        </Typography>
       )}
     </Container>
   );

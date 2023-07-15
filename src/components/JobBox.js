@@ -7,13 +7,12 @@ import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
-import { useNavigate, useLocation } from "react-router";
+import { useNavigate } from "react-router";
 import AuthContext from "./AuthComponents/AuthContext";
 
 export default function MiddleDividers({ job }) {
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
-  let location = useLocation();
 
   return (
     <Box

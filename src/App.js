@@ -5,10 +5,8 @@ import ContainerApp from "./components/ContainerApp";
 import HomePage from "./components/HomePage";
 import { Routes, Route } from "react-router-dom";
 import DetailJob from "./components/DetailJob";
-import Login from "./components/pages/Login";
 import AuthProvider from "./components/AuthComponents/AuthProvider";
-import LoginModal from "./components/LoginModal";
-import Home from "./components/pages/Home";
+import HomeAndLoginModal from "./components/pages/HomeAndLoginModal";
 
 const theme = createTheme({
   palette: {
@@ -22,9 +20,6 @@ const theme = createTheme({
 });
 
 function App() {
-  // const location = useLocation();
-  // const auth = useContext(AuthContext);
-  // const state = location.state;
   return (
     <div>
       <AuthProvider>
@@ -34,7 +29,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />}></Route>
               <Route path="/jobs/:id" element={<DetailJob />}></Route>
-              <Route path="/login" element={<Home />}></Route>
+              <Route path="/login" element={<HomeAndLoginModal />}></Route>
             </Routes>
           </ThemeProvider>
         </ContainerApp>

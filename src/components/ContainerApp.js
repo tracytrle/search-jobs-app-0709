@@ -6,7 +6,6 @@ function ContainerApp(props) {
     <Container
       sx={{
         color: "black",
-        // height: "90vh",
         backgroundColor: "transparent",
         width: "90%",
         height: "90vh",
@@ -16,11 +15,7 @@ function ContainerApp(props) {
         flexDirection: "row",
         justifyContent: "center",
         mt: -3,
-        // position: "static",
-
-        // alignItems: "center",
       }}
-      // maxWidth={false}
       disableGutters
       {...props}
     />

@@ -1,8 +1,8 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 import LoginModal from "../LoginModal";
 import HomePage from "../HomePage";
 
-export default function Home() {
+export default function HomeAndLoginModal() {
   return (
     <>
       <HomePage />
