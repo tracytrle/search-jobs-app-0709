@@ -36,13 +36,15 @@ const style = {
 };
 
 function LoginModal() {
-  const navigate = useNavigate();
+  let navigate = useNavigate();
+  let from = navigate.state?.from?.pathname || "/";
+
   const handleClose = () => {
     navigate(-1);
   };
 
   return (
-    <div>
+    <>
       <Modal
         open={true}
         onClose={handleClose}
@@ -51,10 +53,14 @@ function LoginModal() {
         sx={{ display: "flex", justifyContent: "center" }}
       >
         <Box sx={style}>
-          <LoginForm callback={() => {}} />
+          <LoginForm
+            callback={() => {
+              navigate(from, { replace: true });
+            }}
+          />
         </Box>
       </Modal>
-    </div>
+    </>
   );
 }
 

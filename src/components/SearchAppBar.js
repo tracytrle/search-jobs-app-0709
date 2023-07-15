@@ -54,7 +54,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
-  // const [setOpen] = useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
   const [searchValue, setSearchValue] = useState(searchParams.get("q") || "");
   const auth = useContext(AuthContext);
@@ -66,12 +65,10 @@ export default function SearchAppBar() {
   }
 
   const handleOpen = () => {
-    // setOpen(true);
     navigate("/login");
   };
 
   const handleClose = () => {
-    // setOpen(false);
     auth.logout(() => {
       navigate("/");
     });
@@ -79,12 +76,14 @@ export default function SearchAppBar() {
 
   // since styled("div") not "form", we cannot use onSubmit
   const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      let value = event.target.value;
-      setSearchValue(value);
-      setSearchParams({ q: value });
-      console.log("print searchParams: ", value);
-      event.preventDefault();
+    if (auth.user) {
+      if (event.key === "Enter") {
+        let value = event.target.value;
+        setSearchValue(value);
+        setSearchParams({ q: value });
+        console.log("print searchParams: ", value);
+        event.preventDefault();
+      }
     }
   };
 
